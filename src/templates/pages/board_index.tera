@@ -1,0 +1,13 @@
+{% extends "base.tera" %}
+
+{% block content %}
+
+<ul class="flex flex-col gap-6">
+    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, itaque magnam? Similique exercitationem praesentium neque qui dicta minus? Voluptates fugiat eius voluptas vel cupiditate pariatur dolorum adipisci. Id, sapiente nihil.</li>
+    <li>Repellat voluptates magnam, at sed sequi incidunt dolorem est voluptatem reprehenderit quis harum distinctio dolor laudantium totam id earum fugiat hic ab cupiditate sapiente assumenda porro amet. Velit, qui asperiores.</li>
+    <li>Aliquam asperiores libero doloribus iusto dolorem cupiditate impedit veritatis tempora suscipit, maiores rem illum, neque nostrum delectus odit? Quaerat, amet. Molestiae cum quidem, et necessitatibus nisi ea perspiciatis adipisci error.</li>
+    <li>Placeat officia voluptas in velit voluptates perferendis amet nisi quidem fuga quos aperiam doloremque, harum quaerat laudantium facilis? Dolorum, soluta fugiat! Laudantium aspernatur dicta beatae nesciunt omnis, blanditiis incidunt et.</li>
+    <li>Modi qui magni placeat quos corporis ipsa aspernatur similique reiciendis. Tenetur doloremque libero aliquam vero officia, expedita, rerum dignissimos dolor accusantium corporis eligendi deserunt reiciendis dicta voluptates ipsum temporibus quae.</li>
+</ul>
+
+{% endblock content %}
