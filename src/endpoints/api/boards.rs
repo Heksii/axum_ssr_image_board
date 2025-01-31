@@ -37,17 +37,17 @@ pub async fn create_board(
 
             return Response::builder()
                 .status(201)
-                .body(Body::new(
-                    format!("Board with name '{board_name}' and id {new_id} was created.")
-                        .to_string(),
-                ))
+                .body(Body::from(format!(
+                    "Board with name '{board_name}' and id {new_id} was created."
+                )))
                 .unwrap();
         }
         Err(err) => Response::builder()
             .status(400)
-            .body(Body::new(
-                format!("Unable to create board: {0}", err.to_string()).to_string(),
-            ))
+            .body(Body::from(format!(
+                "Unable to create board: {0}",
+                err.to_string()
+            )))
             .unwrap(),
     }
 }
