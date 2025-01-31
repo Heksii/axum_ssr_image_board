@@ -1,8 +1,9 @@
 mod endpoints;
 use endpoints::{api::API_ROUTER, templates::TEMPLATES_ROUTER};
 
-use axum::{response::Redirect, routing::get, Router};
+use axum::{response::Redirect, routing::get, Extension, Router};
 use lazy_static::lazy_static;
+use sqlx::{postgres::PgPoolOptions, PgPool};
 use std::{
     net::{IpAddr, SocketAddr},
     sync::{Arc, Mutex},
@@ -44,6 +45,14 @@ impl Default for AppState {
 
 #[tokio::main]
 async fn main() {
+    let db_url = dotenvy::var("DATABASE_URL").expect("'DATABASE_URL' was not set in .env");
+
+    let db = PgPoolOptions::new()
+        .max_connections(20)
+        .connect(&db_url)
+        .await
+        .expect("Failed to connect to database");
+
     let base_router: Router<AppState> = Router::new()
         .nest_service("/static", ServeDir::new("src/static/"))
         .route("/", get(|| async { Redirect::permanent("/landing") }));
@@ -55,6 +64,7 @@ async fn main() {
         .merge(base_router)
         .merge(api_router)
         .merge(templates_router)
+        .layer(Extension(db))
         .with_state(AppState::default())
         .into_make_service_with_connect_info::<SocketAddr>();
 

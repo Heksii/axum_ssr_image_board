@@ -1,5 +1,7 @@
-CREATE ROLE img_brd WITH LOGIN PASSWORD 'img_brd';
-CREATE DATABASE img_brd WITH OWNER "img_brd";
+DROP TABLE IF EXISTS boards CASCADE;
+DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS comments CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE boards(
     board_id INT GENERATED ALWAYS AS IDENTITY,
@@ -20,7 +22,7 @@ CREATE TABLE posts(
     CONSTRAINT fk_board
         FOREIGN KEY(board_id) 
             REFERENCES boards(board_id)
-)
+);
 
 CREATE TABLE comments(
     comment_id INT GENERATED ALWAYS AS IDENTITY,
@@ -34,14 +36,14 @@ CREATE TABLE comments(
 
     CONSTRAINT fk_post
         FOREIGN KEY(post_id) 
-            REFERENCES posts(post_id)
+            REFERENCES posts(post_id),
 
     CONSTRAINT fk_replies_to
         FOREIGN KEY(replies_to)
             REFERENCES comments(comment_id)
-)
+);
 
 CREATE TABLE users(
     user_id INT GENERATED ALWAYS AS IDENTITY,
-    ip_address VARCHAR(255) NOT NULL,
-)
+    ip_address VARCHAR(255) NOT NULL
+);
