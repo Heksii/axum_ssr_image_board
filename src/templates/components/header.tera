@@ -3,9 +3,14 @@
     class="grid grid-cols-2 md:grid-cols-4 sm:grid-cols-3 auto-rows-auto gap-2"
   >
     {% for link in ["landing", "board_index",] %}
-    <a href="/{{ link }}" class="hover:underline"
-      ><span class="text-accent-a">></span>{{ link }}</a
-    >
+    <div>
+      <span class="text-accent-a">></span>
+      <a
+        href="/pages/{{ link }}"
+        class="hover:underline"
+        >{{ link }}</a
+      >
+    </div>
     {% endfor %}
   </nav>
 </header>

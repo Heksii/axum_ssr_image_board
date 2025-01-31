@@ -1,27 +1,28 @@
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Document</title>
 
-  <script src="./static/htmx.js"></script>
-  <script src="./static/htmx-json-enc.js"></script>
-  <script src="./static/htmx-websockets.js"></script>
+  <script src="../static/htmx.js"></script>
+  <script src="../static/htmx-json-enc.js"></script>
 
-  <script src="./static/tailwind.js"></script>
+  <script src="../static/tailwind.js"></script>
 
   <style type="text/tailwindcss">
-    @import "tailwindcss";
-
     @font-face {
       font-family: fira-code;
-      src: url("./static/FiraCode-Regular.woff2") format("woff2");
+      src: url("../static/FiraCode-Regular.woff2") format("woff2");
     }
 
     @theme {
       --font-firacode: "fira-code", "sans-serif";
       --color-dark: var(--color-gray-900);
-      --color-medium: var(--color-gray-600);
+      --color-disabled: var(--color-gray-700);
+      --color-medium: var(--color-gray-500);
       --color-light: var(--color-white);
       --color-accent-a: var(--color-pink-400);
       --color-accent-b: var(--color-yellow-300);

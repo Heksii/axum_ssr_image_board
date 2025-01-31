@@ -47,3 +47,5 @@ CREATE TABLE users(
     user_id INT GENERATED ALWAYS AS IDENTITY,
     ip_address VARCHAR(255) NOT NULL
 );
+
+INSERT INTO boards (board_name) VALUES ('the first board')
