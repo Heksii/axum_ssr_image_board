@@ -1,7 +1,6 @@
 use axum::{
     body::Body,
     debug_handler,
-    extract::{Query, RawPathParams},
     response::{IntoResponse, Response},
     Extension, Json,
 };
@@ -25,23 +24,21 @@ pub async fn create_board(
 ) -> Response {
     let board_name = payload.board_name;
 
-    match sqlx::query!(
+    let query = sqlx::query!(
         "INSERT INTO boards (board_name) VALUES ($1) RETURNING board_id;",
         board_name.clone() as String
-    )
-    .fetch_one(&pg_pool)
-    .await
-    {
-        Ok(record) => {
-            let new_id = record.board_id;
+    );
 
-            return Response::builder()
-                .status(201)
-                .body(Body::from(format!(
-                    "Board with name '{board_name}' and id {new_id} was created."
-                )))
-                .unwrap();
-        }
+    let query_result = query.fetch_one(&pg_pool).await;
+
+    match query_result {
+        Ok(record) => Response::builder()
+            .status(201)
+            .body(Body::from(format!(
+                "Board with name '{0}' and id {1} was created.",
+                board_name, record.board_id
+            )))
+            .unwrap(),
         Err(err) => Response::builder()
             .status(400)
             .body(Body::from(format!(
