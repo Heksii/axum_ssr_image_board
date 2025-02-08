@@ -4,15 +4,15 @@
 
   <title>Document</title>
 
-  <script src="../static/htmx.js"></script>
-  <script src="../static/htmx-json-enc.js"></script>
+  <script src="../static/js/htmx.js"></script>
+  <script src="../static/js/htmx-json-enc.js"></script>
 
-  <script src="../static/tailwind.js"></script>
+  <script src="../static/js/tailwind.js"></script>
 
   <style type="text/tailwindcss">
     @font-face {
       font-family: fira-code;
-      src: url("../static/FiraCode-Regular.woff2") format("woff2");
+      src: url("../static/fonts/FiraCode-Regular.woff2") format("woff2");
     }
 
     @theme {
