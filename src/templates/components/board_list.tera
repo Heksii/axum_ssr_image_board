@@ -1,13 +1,12 @@
-<ul class="flex flex-col gap-4">
-  {% for board in boards %}
-  <li>
-    <span class="text-accent-a">></span>
-    <a
-      href=""
-      class="hover:underline"
-      >{{ board.board_name }}</a
-    >
-    <span class="text-medium text-sm">{{ [board.board_id] }}</span>
-  </li>
-  {% endfor %}
-</ul>
+<div class="p-2">
+  <h2 class="text-medium mb-2">Boards</h2>
+  <ul class="flex flex-col gap-2">
+    {% for board in boards %}
+    <li>
+      <span class="text-accent-a">></span>
+      <a href="board/{{ board.id }}" class="hover:underline">{{ board.title }}</a>
+      <span class="text-medium text-sm">({{ board.id }})</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

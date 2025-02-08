@@ -9,24 +9,24 @@ use sqlx::PgPool;
 
 #[derive(Serialize, Deserialize, Debug, sqlx::FromRow)]
 pub struct Board {
-    board_id: i32,
-    board_name: String,
+    id: i32,
+    title: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct CreateBoard {
-    board_name: String,
+pub struct CreateBoardPayload {
+    title: String,
 }
 
 pub async fn create_board(
     Extension(pg_pool): Extension<PgPool>,
-    Json(payload): Json<CreateBoard>,
+    Json(payload): Json<CreateBoardPayload>,
 ) -> Response {
-    let board_name = payload.board_name;
+    let title = payload.title;
 
     let query = sqlx::query!(
-        "INSERT INTO boards (board_name) VALUES ($1) RETURNING board_id;",
-        board_name.clone() as String
+        "INSERT INTO boards (title) VALUES ($1) RETURNING id;",
+        title.clone() as String
     );
 
     let query_result = query.fetch_one(&pg_pool).await;
@@ -36,7 +36,7 @@ pub async fn create_board(
             .status(201)
             .body(Body::from(format!(
                 "Board with name '{0}' and id {1} was created.",
-                board_name, record.board_id
+                title, record.id
             )))
             .unwrap(),
         Err(err) => Response::builder()

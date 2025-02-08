@@ -1,20 +1,25 @@
 {% extends "base.tera" %} {% block content %}
 
-<div class="w-full flex flex-col gap-2">
-  <h1 class="p-2 border-2 text-lg font-semibold w-full tracking-widest">
-    Boards
+<div class="w-full grid grid-cols-6 gap-2">
+  <h1 class="p-2 border-b-2 text-lg col-span-6 tracking-widest">
+    Board index
   </h1>
 
-  <form hx-post="/api/boards" hx-ext="json-enc" class="border-2 p-2 flex flex-col gap-2 w-sm max-w-full">
-    <input type="text" name="board_name" pattern=".{3,255}" required placeholder="board name [3+ characters]" class="peer border-2 px-2 py-1 placeholder-medium" />
-    <button type="submit" class="px-2 py-1 font-semibold bg-disabled text-medium peer-valid:text-light peer-valid:bg-accent-a peer-valid:cursor-pointer peer-valid:hover:bg-light peer-valid:hover:text-dark">
-      create new board
-    </button>
-  </form>
+  <div class="col-span-3">
+    <p class="text-medium" hx-get="/components/board_list" hx-trigger="load" hx-swap="outerHTML">
+      Loading boards...
+    </p>
+  </div>
 
-  <p class="text-medium" hx-get="/components/board_list" hx-trigger="load" hx-swap="outerHTML">
-    Loading boards...
-  </p>
+  <div class="col-span-3 p-2">
+    <h2 class="text-medium mb-2">Create a new board</h2>
+    <form hx-post="/api/boards" hx-ext="json-enc" class="flex flex-col gap-2">
+      <input type="text" name="title" pattern=".{3,255}" required placeholder="board name [3-255 characters]" class="border-dashed peer border-2 px-2 py-1 placeholder-medium outline-none" />
+      <button type="submit" class="px-2 py-1 font-semibold bg-disabled text-medium peer-valid:text-light peer-valid:bg-accent-a peer-valid:cursor-pointer peer-valid:hover:bg-light peer-valid:hover:text-dark">
+        create new board
+      </button>
+    </form>
+  </div>
 </div>
 
 {% endblock content %}

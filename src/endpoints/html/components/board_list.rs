@@ -10,8 +10,8 @@ use crate::TEMPLATES;
 
 #[derive(Serialize, Deserialize, Debug, sqlx::FromRow)]
 pub struct Board {
-    board_id: i32,
-    board_name: String,
+    id: i32,
+    title: String,
 }
 
 pub async fn board_list(Extension(pg_pool): Extension<PgPool>) -> Response {

@@ -4,8 +4,11 @@
 
   <body class="h-screen bg-dark text-light font-firacode flex flex-col items-center">
     <div class="w-4xl max-w-full px-2 flex flex-col gap-6 items-center">
-      {% include "components/header.tera" %} {% block content %} {% endblock
-      content %} {% include "components/footer.tera" %}
+      {% include "components/header.tera" %}
+      <div class="px-2 w-full">
+        {% block content %} {% endblock content %}
+      </div>
+      {% include "components/footer.tera" %}
     </div>
   </body>
 
