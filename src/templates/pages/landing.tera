@@ -1,15 +1,15 @@
-{% extends "base.tera" %}
-
-{% block content %}
+{% extends "base.tera" %} {% block content %}
 
 <div class="flex flex-col gap-2 relative h-96 w-full">
-    <h1 class="p-2 border-2 w-full tracking-widest">Landing page</h1>
+  <h1 class="p-2 border-2 text-lg font-semibold w-full tracking-widest">
+    Landing page
+  </h1>
 
-    <div class="absolute w-64 h-64 p-2 bg-dark place-self-center top-2">
-        <div class="w-full h-full border-2 border-accent-b p-2 flex flex-col items-center justify-center">
-            popup thing
-        </div>
+  <div class="absolute w-64 h-64 p-2 bg-dark place-self-center top-2">
+    <div class="w-full h-full border-2 border-accent-b p-2 flex flex-col items-center justify-center">
+      popup thing
     </div>
+  </div>
 </div>
 
 {% endblock content %}

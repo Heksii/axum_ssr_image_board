@@ -1,10 +1,14 @@
 use crate::AppState;
 use axum::{routing::get, Router};
-use lazy_static::lazy_static;
 
+mod boards;
 mod status;
 
-lazy_static! {
-    pub static ref API_ROUTER: Router<AppState> =
-        Router::new().route("/status", get(status::status));
+pub fn api_router() -> Router<AppState> {
+    Router::new()
+        .route("/api/status", get(status::status))
+        .route(
+            "/api/boards",
+            get(boards::list_boards).post(boards::create_board),
+        )
 }
